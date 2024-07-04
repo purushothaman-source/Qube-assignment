@@ -9,6 +9,8 @@ const StyledToolbar = styled.div`
   min-height: 64px;
   padding: 1rem;
   display: flex;
+  flex-wrap: wrap;
+
   align-items: center;
   font-size: 0.75rem;
 
@@ -49,7 +51,7 @@ const FilterToolbar = ({
     handleSearch();
   };
   return (
-    <StyledToolbar>
+    <StyledToolbar className="gap-2">
       <form className="left-col d-flex" onSubmit={handleFormSubmit}>
         <div className="input-wrapper me-2">
           <label>
