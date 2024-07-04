@@ -7,6 +7,7 @@ import { useQuery } from "@apollo/client";
 import Header from "./Header";
 import FilterToolbar from "./FilterToolbar";
 import color from "../utils/getColor";
+import Loader from "./loader";
 
 const StyledHeader = styled.header`
   width: 100%;
@@ -90,7 +91,7 @@ const DeviceList = () => {
     setDevices(filteredItems);
   };
 
-  if (!data) return "Loading...";
+  if (!data) return <Loader fullPage />;
 
   return (
     <>

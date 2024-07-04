@@ -8,6 +8,7 @@ import speedIcon from "../assets/speed.svg";
 import logIcon from "../assets/logs.svg";
 import storageIcon from "../assets/storage.svg";
 import color from "../utils/getColor";
+import Loader from "./loader";
 
 const BreadCrumb = styled.div`
   min-height: 48px;
@@ -155,7 +156,7 @@ const DeviceDetail = () => {
   });
   const device = data?.appliance || {};
 
-  if (!device) return <div>Loading...</div>;
+  if (!data) return <Loader fullPage />;
 
   return (
     <div>
