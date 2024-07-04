@@ -66,7 +66,7 @@ const DeviceList = () => {
   const [devices, setDevices] = useState(data?.appliances || []);
 
   useEffect(() => {
-    setDevices(data?.appliances);
+    setDevices(data?.appliances || []);
   }, [data?.appliances]);
 
   const startIndex = (activePage - 1) * itemsPerPage;
