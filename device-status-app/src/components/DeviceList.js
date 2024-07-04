@@ -1,15 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Card, Button } from "reactstrap";
-
 import { getAppliances } from "../graphql";
 import { useQuery } from "@apollo/client";
 import Header from "./Header";
 import FilterToolbar from "./FilterToolbar";
 import color from "../utils/getColor";
-import { useState } from "react";
-import { useMemo } from "react";
 
 const StyledHeader = styled.header`
   width: 100%;
@@ -61,14 +58,16 @@ const TableWrapper = styled.div`
 `;
 
 const DeviceList = () => {
+  const { data } = useQuery(getAppliances);
+
   const [activePage, setActivePage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [searchText, setSearchText] = useState("");
-  // const [debouncedSearchText, setSearchText] = useState("");
+  const [devices, setDevices] = useState(data?.appliances || []);
 
-  const { data } = useQuery(getAppliances);
-
-  let devices = useMemo(() => data?.appliances || [], [data?.appliances]);
+  useEffect(() => {
+    setDevices(data?.appliances);
+  }, [data?.appliances]);
 
   const startIndex = (activePage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -84,7 +83,12 @@ const DeviceList = () => {
     setItemsPerPage(parseInt(e.target.value));
   };
 
-  const handleSearch = () => {};
+  const handleSearch = () => {
+    const filteredItems = (data?.appliances || []).filter((device) =>
+      device.theatreName.toLowerCase().includes(searchText.toLowerCase())
+    );
+    setDevices(filteredItems);
+  };
 
   return (
     <>

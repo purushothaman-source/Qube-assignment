@@ -42,10 +42,15 @@ const FilterToolbar = ({
   setSearchText = () => {},
   handlePageChange = () => {},
   changeItemsPerPage = () => {},
+  handleSearch = () => {},
 }) => {
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    handleSearch();
+  };
   return (
     <StyledToolbar>
-      <div className="left-col d-flex">
+      <form className="left-col d-flex" onSubmit={handleFormSubmit}>
         <div className="input-wrapper me-2">
           <label>
             <input
@@ -56,11 +61,11 @@ const FilterToolbar = ({
             <img src={search} alt="search icon" />
           </label>
         </div>
-        <Button color="light">
+        <Button color="light" type="submit">
           <img src={filter} alt="filter icon" className="me-1" />
           Filter
         </Button>
-      </div>
+      </form>
       <div className="right-col d-flex align-items-stretch gap-2">
         <span style={{ alignSelf: "center" }}>Show</span>
         <select onChange={changeItemsPerPage} value={itemsPerPage}>
@@ -70,22 +75,20 @@ const FilterToolbar = ({
             </option>
           ))}
         </select>
-        <Pagination
-          activePage={activePage}
-          itemsCountPerPage={itemsPerPage}
-          totalItemsCount={totolCount}
-          onChange={(e) => {
-            handlePageChange(e);
-          }}
-          itemClass="page-item"
-          linkClass="page-link"
-          linkClassFirst="d-none"
-          linkClassLast="d-none"
-          // nextPageText={<span className="fw-800  text-dark">{`>`}</span>}
-          // prevPageText={<span className="fw-800  text-dark">{`<`}</span>}
-          // firstPageText={<div className="d-none"></div>}
-          // lastPageText={<div className="d-none"></div>}
-        />
+        {totolCount > itemsPerPage && (
+          <Pagination
+            activePage={activePage}
+            itemsCountPerPage={itemsPerPage}
+            totalItemsCount={totolCount}
+            onChange={(e) => {
+              handlePageChange(e);
+            }}
+            itemClass="page-item"
+            linkClass="page-link"
+            linkClassFirst="d-none"
+            linkClassLast="d-none"
+          />
+        )}
       </div>
     </StyledToolbar>
   );
