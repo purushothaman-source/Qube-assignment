@@ -90,6 +90,8 @@ const DeviceList = () => {
     setDevices(filteredItems);
   };
 
+  if (!data) return "Loading...";
+
   return (
     <>
       <StyledHeader>Devices</StyledHeader>
