@@ -1,0 +1,56 @@
+* {
+  box-sizing: border-box;
+  font-family: Commissioner, Roboto, "sans-serif";
+}
+
+html {
+  font-size: 1.1rem;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  font-family: Commissioner, Roboto, "sans-serif";
+  font-style: normal;
+  background: rgba(245, 248, 250, 1);
+  color: rgba(45, 53, 64, 1);
+}
+
+.card {
+  border: none;
+}
+
+.status-circle {
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: gray;
+}
+
+.btn-light {
+  background-color: rgba(230, 236, 240, 1);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.pagination {
+  margin: 0;
+}
+
+.page-item.active {
+  border: 1px solid #000;
+  border-radius: 5px;
+}
+
+.page-item.disabled {
+  opacity: 0.5;
+}
+
+.page-link {
+  font-size: 0.75rem;
+  background: transparent !important;
+  border: none !important;
+  color: black !important;
+}

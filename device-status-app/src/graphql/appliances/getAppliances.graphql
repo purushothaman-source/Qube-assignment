@@ -1,0 +1,20 @@
+query GetAppliances($id: String!) {
+  appliances(id: $id) @rest(type: "appliance", path: "/appliances") {
+    serialNo
+    theatreName
+    location {
+      city
+      state
+      country
+    }
+    bandwidth
+    avgBandwidth
+    deviceStatus
+    downloadStatus
+    osVersion
+    ispPaymentResponsibility
+    planStartDate
+    billingCycle
+    storage
+  }
+}

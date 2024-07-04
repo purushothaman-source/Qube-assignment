@@ -1,0 +1,21 @@
+query GetAppliance($applianceId: String!) {
+  appliance(applianceId: $applianceId)
+    @rest(type: "appliance", path: "/appliance/{args.applianceId}/info") {
+    serialNo
+    theatreName
+    location {
+      city
+      state
+      country
+    }
+    bandwidth
+    avgBandwidth
+    deviceStatus
+    downloadStatus
+    osVersion
+    ispPaymentResponsibility
+    planStartDate
+    billingCycle
+    storage
+  }
+}
